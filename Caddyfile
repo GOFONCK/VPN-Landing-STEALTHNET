@@ -1,0 +1,4 @@
+# По умолчанию — localhost. Для продакшена запустите: ./install.sh
+localhost {
+    reverse_proxy app:3000
+}
