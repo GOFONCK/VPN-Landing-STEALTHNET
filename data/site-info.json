@@ -3,13 +3,13 @@
     "email": "support@afina.vip",
     "telegram": "@afinavpn"
   },
-  "authUrl": "",
-  "registerUrl": "",
+  "authUrl": "https://panel.afinavip.shop/login",
+  "registerUrl": "https://panel.afinavip.shop/register",
   "connectUrl": "#tariffs",
   "siteUrl": "https://afina.vip",
   "logoUrl": "/logo.png",
   "brand": {
-    "name": "AFINA",
+    "name": "AFINA ",
     "tagline": "VPN"
   },
   "seo": {
@@ -24,7 +24,40 @@
     "bgColor": "#0f172a",
     "textColor": "#e2e8f0",
     "cardBg": "#1e293b",
-    "headingColor": "#fbbf24"
+    "headingColor": "#fbbf24",
+    "headerBg": "rgba(2,6,23,0.98)"
+  },
+  "header": {
+    "showLogo": true,
+    "showBrand": true,
+    "elementOrder": [
+      "logo",
+      "brand",
+      "nav",
+      "auth"
+    ],
+    "navItems": [
+      {
+        "label": "Тарифы",
+        "href": "/#tariffs"
+      },
+      {
+        "label": "Инструкции",
+        "href": "/instructions"
+      },
+      {
+        "label": "Оферта",
+        "href": "/offerta"
+      },
+      {
+        "label": "Соглашение",
+        "href": "/agreement"
+      },
+      {
+        "label": "Контакты",
+        "href": "/contacts"
+      }
+    ]
   },
   "design": {
     "heroTitleSize": "text-5xl md:text-6xl lg:text-7xl",

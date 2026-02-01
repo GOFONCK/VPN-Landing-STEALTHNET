@@ -35,6 +35,9 @@ fi
 # Создание папок
 mkdir -p data public/uploads
 
+# Права для записи из контейнера (приложение работает от uid 1001)
+chown -R 1001:1001 data public/uploads 2>/dev/null || true
+
 # Инициализация data если пусто
 if [ ! -f data/tariffs.json ]; then
     echo '[]' > data/tariffs.json
@@ -77,4 +80,7 @@ echo "Команды:"
 echo "  docker compose logs -f    — логи"
 echo "  docker compose down       — остановить"
 echo "  docker compose up -d      — запустить снова"
+echo
+echo "Если в админке не сохраняются настройки (нет прав на запись):"
+echo "  sudo chown -R 1001:1001 data public/uploads"
 echo

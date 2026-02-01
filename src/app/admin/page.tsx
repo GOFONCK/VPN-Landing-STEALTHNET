@@ -21,6 +21,7 @@ export default function AdminPage() {
   const [siteInfo, setSiteInfo] = useState<SiteInfo | null>(null);
   const [editing, setEditing] = useState<string | null>(null);
   const [saving, setSaving] = useState(false);
+  const [saveError, setSaveError] = useState('');
   const [previewKey, setPreviewKey] = useState(0);
 
   useEffect(() => {
@@ -108,11 +109,18 @@ export default function AdminPage() {
 
   const handleSaveSiteInfo = async (info: SiteInfo) => {
     setSaving(true);
-    await fetch('/api/site-info', {
+    setSaveError('');
+    const res = await fetch('/api/site-info', {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(info),
     });
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok) {
+      setSaveError(data.error || `Ошибка сохранения: ${res.status}`);
+      setSaving(false);
+      return;
+    }
     await loadData();
     setPreviewKey((k) => k + 1);
     setSaving(false);
@@ -187,6 +195,11 @@ export default function AdminPage() {
       {siteInfo && (
         <section>
           <h2 className="mb-4 text-lg font-semibold text-slate-200">Контакты и документы</h2>
+          {saveError && (
+            <div className="mb-4 rounded-lg border border-red-500/50 bg-red-500/10 px-4 py-3 text-sm text-red-400">
+              {saveError}
+            </div>
+          )}
           <SiteInfoForm info={siteInfo} onSave={handleSaveSiteInfo} saving={saving} />
         </section>
       )}

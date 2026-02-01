@@ -1,4 +1,3 @@
-# По умолчанию — localhost. Для продакшена запустите: ./install.sh
-localhost {
+afina.vip {
     reverse_proxy app:3000
 }
